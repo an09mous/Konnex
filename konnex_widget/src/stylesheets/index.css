@@ -1,0 +1,26 @@
+html,
+body {
+  width: 100vw;
+  
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.bg-blue{
+  background-color: #4d0066	;
+}
+.txt-wh{
+  color:#fff;
+}
+.h-500{
+  height:500px
+}
+.txt-50{
+  font-size: 50px;
+}
+.mg-bt-50{
+  margin-bottom: 250px !important;
+}
+.mg-top-50{
+  margin-top: 50px;
+}
