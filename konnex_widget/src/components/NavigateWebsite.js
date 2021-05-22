@@ -20,11 +20,11 @@ const NavigateWebsite = (Props) => {
       .catch((e) => {console.log("error", e)});
   }
   return (
-    <div className = "container-fluid h-500">
+    <div className = "container-fluid h-500" >
       <br />
       <center>
         <h2>Navigation</h2>
-        <div className="ag-theme-alpine" style={{height: 400, width: 300}}>
+        <div className="ag-theme-alpine hscrollchat" >
            <AgGridReact
                rowData={rowData}>
                <AgGridColumn field="navigation" sortable={ true } filter={ true } resizable={true} width = {150}></AgGridColumn>

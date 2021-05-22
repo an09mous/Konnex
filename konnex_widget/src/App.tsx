@@ -24,59 +24,67 @@ const [appImprovementSelected, setAppImprovementSelected] = useState(false);
 const [bugsSelected, setBugsSelected] = useState(false);
 const [usageSelected, setUsageSelected] = useState(false);
  useEffect(() => {
-    axios.get("http://127.0.0.1:5000/api?key=konnex123")
+    axios.get("http://127.0.0.1:5001/api?key=konnex123")
     .then((response) => {
       const data = JSON.parse(response.data);
-const renderHeader = () => {
-   return (
-   <div className="p-3 m-0 text-white pull-right ">
-     <button className="bg-transparent text-white"><i className="fa fa-close"></i></button>
-    </div>);
- }
-
       setAppAnnouncementsSelected(data.announcements);
       setAppNavSelected(data.applicationNavigation);
       setAppImprovementSelected(data.suggestions);
       setBugsSelected(data.bugs);
       setChatbotSelected(data.chatbot);
+      setUsageSelected(data.usage);
     })
     .catch((error) => {
       console.log("error", error);
     })
   }, []);
+
+  const renderHeader = () => {
+    return (
+    <div className="p-3 m-0 text-white pull-right ">
+      <button className="bg-transparent text-white"><i className="fa fa-close"></i></button>
+     </div>);
+  }
   
  const renderLinks = () => {
    return (
     <Container>
-      {
-        <Button 
+       { !appNavSelected ? <Button 
           onClick={() => setPage(4)}
           
           tooltip="Navigate this website"
-          icon="fa fa-arrows" />
-      }
+          icon="fa fa-arrows" /> : ""
+       }
       
-        <Button 
+      {!chatbotSelected ? <Button 
             onClick={() => setPage(5)}
             
             tooltip="chat support"
-            icon="fa fa-comment" />
+            icon="fa fa-comment" />: ""
+      }
 
-        <Button 
+      {
+        !appAnnouncementsSelected ? <Button 
             onClick={() => setPage(2)}
             
             tooltip="Announcements"
-            icon="fa fa-bullhorn" />
-        <Button 
+            icon="fa fa-bullhorn" />: ""
+      }
+
+      {!appImprovementSelected ? <Button 
             onClick={() => setPage(2)}
             
             tooltip="Suggest Improvements"
-            icon="fa fa-sticky-note" />
-        <Button 
+            icon="fa fa-sticky-note" />: ""
+      }
+      {
+        !bugsSelected ? <Button 
             onClick={() => setPage(2)}
             
             tooltip="Report Bug"
-            icon="fa fa-bug" />
+            icon="fa fa-bug" />: ""
+      }
+
         
         
         <Button

@@ -21,7 +21,7 @@ function Dashboard() {
   const [usageSelected, setUsageSelected] = useState(false);
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:5000/api?key=konnex123")
+    axios.get("http://127.0.0.1:5001/api?key=konnex123")
     .then((response) => {
       const data = JSON.parse(response.data);
 
@@ -37,7 +37,7 @@ function Dashboard() {
   }, []);
 
   function updateConfig() {
-    axios.put("http://127.0.0.1:5000/api?key=konnex123",
+    axios.put("http://127.0.0.1:5001/api?key=konnex123",
       {
         key: "konnex123",
         announcements: appAnnouncementsSelected,
