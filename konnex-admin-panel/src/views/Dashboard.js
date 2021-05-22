@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import ToggleButton from "./ToggleButton";
+import axios from 'axios';
 
 import {
   Card,
@@ -11,12 +12,44 @@ import {
 } from "reactstrap";
 
 function Dashboard() {
+
   const [appNavSelected, setAppNavSelected] = useState(false);
   const [chatbotSelected, setChatbotSelected] = useState(false);
   const [appAnnouncementsSelected, setAppAnnouncementsSelected] = useState(false);
   const [appImprovementSelected, setAppImprovementSelected] = useState(false);
   const [bugsSelected, setBugsSelected] = useState(false);
   const [usageSelected, setUsageSelected] = useState(false);
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:5000/api?key=konnex123")
+    .then((response) => {
+      const data = JSON.parse(response.data);
+
+      setAppAnnouncementsSelected(data.announcements);
+      setAppNavSelected(data.applicationNavigation);
+      setAppImprovementSelected(data.suggestions);
+      setBugsSelected(data.bugs);
+      setChatbotSelected(data.chatbot);
+    })
+    .catch((error) => {
+      console.log("error", error);
+    })
+  }, []);
+
+  function updateConfig() {
+    axios.put("http://127.0.0.1:5000/api?key=konnex123",
+      {
+        key: "konnex123",
+        announcements: appAnnouncementsSelected,
+        applicationNavigation: appNavSelected,
+        suggestions: appImprovementSelected,
+        bugs: bugsSelected,
+        chatbot: chatbotSelected,
+        usage: usageSelected
+      }
+    )
+  }
+  
   return (
     <>
       <div className="content">
@@ -45,6 +78,7 @@ function Dashboard() {
                     selected={appNavSelected}
                     toggleSelected={() => {
                       setAppNavSelected(!appNavSelected);
+                      updateConfig();
                     }}
                   />
                 </div>
@@ -75,6 +109,7 @@ function Dashboard() {
                     selected={chatbotSelected}
                     toggleSelected={() => {
                       setChatbotSelected(!chatbotSelected);
+                      updateConfig();
                     }}
                   />
                 </div>
@@ -105,6 +140,7 @@ function Dashboard() {
                     selected={appImprovementSelected}
                     toggleSelected={() => {
                       setAppImprovementSelected(!appImprovementSelected);
+                      updateConfig();
                     }}
                   />
                 </div>
@@ -137,6 +173,7 @@ function Dashboard() {
                     selected={bugsSelected}
                     toggleSelected={() => {
                       setBugsSelected(!bugsSelected);
+                      updateConfig();
                     }}
                   />
                 </div>
@@ -167,6 +204,7 @@ function Dashboard() {
                     selected={appAnnouncementsSelected}
                     toggleSelected={() => {
                       setAppAnnouncementsSelected(!appAnnouncementsSelected);
+                      updateConfig();
                     }}
                   />
                 </div>
@@ -197,6 +235,7 @@ function Dashboard() {
                     selected={usageSelected}
                     toggleSelected={() => {
                       setUsageSelected(!usageSelected);
+                      updateConfig();
                     }}
                   />
                 </div>

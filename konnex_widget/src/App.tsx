@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { IConfig } from './config/interfaces';
 import { Context } from './context/context';
 import Active from './components/Active';
@@ -7,10 +7,9 @@ import NewTask from './components/NewTask';
 import Chat from './components/Chat';
 import { Container, Button } from 'react-floating-action-button';
 import NavigateWebsite from './components/NavigateWebsite';
+import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import {Button,ButtonGroup} from 'react-bootstrap';
 import 'font-awesome/css/font-awesome.min.css';
@@ -18,29 +17,39 @@ import 'font-awesome/css/font-awesome.min.css';
 const App: React.FC = (props) => {
 const config: IConfig = JSON.parse(useContext(Context));
 const [page, setPage] = useState<Number>(1);
-const renderHeader = () => {
-   return (<h3 className="bg-dark p-3 m-0 text-white">Todo-List</h3>);
- }
+const [appNavSelected, setAppNavSelected] = useState(false);
+const [chatbotSelected, setChatbotSelected] = useState(false);
+const [appAnnouncementsSelected, setAppAnnouncementsSelected] = useState(false);
+const [appImprovementSelected, setAppImprovementSelected] = useState(false);
+const [bugsSelected, setBugsSelected] = useState(false);
+const [usageSelected, setUsageSelected] = useState(false);
+ useEffect(() => {
+    axios.get("http://127.0.0.1:5000/api?key=konnex123")
+    .then((response) => {
+      const data = JSON.parse(response.data);
 
+      setAppAnnouncementsSelected(data.announcements);
+      setAppNavSelected(data.applicationNavigation);
+      setAppImprovementSelected(data.suggestions);
+      setBugsSelected(data.bugs);
+      setChatbotSelected(data.chatbot);
+    })
+    .catch((error) => {
+      console.log("error", error);
+    })
+  }, []);
+  
  const renderLinks = () => {
-   /*return (<div>
-    <div className="nav row m-0 bg-light flex-column text-white">
-    <a className="nav-link text-center btn btn-primary" href="#" onClick={() => setPage(4)}>Welcome</a>
-      
-      <a className="nav-link text-center btn btn-info" href="#" onClick={() => setPage(1)}>Active</a>
-      <a className="nav-link text-center btn btn-warning" href="#" onClick={() => setPage(2)}>New</a>
-      <a className="nav-link text-center btn btn-success" href="#" onClick={() => setPage(3)}>Completed</a>
-      
-    </div>
-   </div>
-   )*/
    return (
     <Container>
+      {
         <Button 
-            onClick={() => setPage(4)}
-            
-            tooltip="Navigate this website"
-            icon="fa fa-arrows" />
+          onClick={() => setPage(4)}
+          
+          tooltip="Navigate this website"
+          icon="fa fa-arrows" />
+      }
+      
         <Button 
             onClick={() => setPage(5)}
             

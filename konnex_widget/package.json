@@ -12,6 +12,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "ag-grid-community": "^25.2.1",
+    "ag-grid-react": "^25.2.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "button": "^1.1.1",
     "font-awesome": "^4.7.0",
@@ -23,6 +26,7 @@
     "react-floating": "^1.0.0",
     "react-floating-action-button": "^1.0.5",
     "react-scripts": "^3.4.3",
+    "react-search-field": "^1.2.1",
     "react-simple-chatbot": "^0.6.1",
     "styled-components": "^5.3.0"
   },
