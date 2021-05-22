@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 //import {Button,ButtonGroup} from 'react-bootstrap';
 import 'font-awesome/css/font-awesome.min.css';
+import Announcements from './components/Announcements';
 
 const App: React.FC = (props) => {
 const config: IConfig = JSON.parse(useContext(Context));
@@ -49,14 +50,14 @@ const [usageSelected, setUsageSelected] = useState(false);
  const renderLinks = () => {
    return (
     <Container>
-       { !appNavSelected ? <Button 
+       {appNavSelected ? <Button 
           onClick={() => setPage(4)}
           
           tooltip="Navigate this website"
           icon="fa fa-arrows" /> : ""
        }
       
-      {!chatbotSelected ? <Button 
+      {chatbotSelected ? <Button 
             onClick={() => setPage(5)}
             
             tooltip="chat support"
@@ -64,21 +65,21 @@ const [usageSelected, setUsageSelected] = useState(false);
       }
 
       {
-        !appAnnouncementsSelected ? <Button 
+        appAnnouncementsSelected ? <Button 
             onClick={() => setPage(2)}
             
             tooltip="Announcements"
             icon="fa fa-bullhorn" />: ""
       }
 
-      {!appImprovementSelected ? <Button 
+      {appImprovementSelected ? <Button 
             onClick={() => setPage(2)}
             
             tooltip="Suggest Improvements"
             icon="fa fa-sticky-note" />: ""
       }
       {
-        !bugsSelected ? <Button 
+        bugsSelected ? <Button 
             onClick={() => setPage(2)}
             
             tooltip="Report Bug"
@@ -101,7 +102,7 @@ const [usageSelected, setUsageSelected] = useState(false);
  const renderComponent = () => {
    switch(page) {
      case 1: return <Active/>
-     case 2: return <NewTask setPage={setPage}/>
+     case 2: return <Announcements setPage={setPage}/>
      case 3: return <Completed config={config}/>
      case 4: return <NavigateWebsite/>
      case 5: return <Chat/>
