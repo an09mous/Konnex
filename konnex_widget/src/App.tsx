@@ -27,6 +27,12 @@ const [usageSelected, setUsageSelected] = useState(false);
     axios.get("http://127.0.0.1:5000/api?key=konnex123")
     .then((response) => {
       const data = JSON.parse(response.data);
+const renderHeader = () => {
+   return (
+   <div className="p-3 m-0 text-white pull-right ">
+     <button className="bg-transparent text-white"><i className="fa fa-close"></i></button>
+    </div>);
+ }
 
       setAppAnnouncementsSelected(data.announcements);
       setAppNavSelected(data.applicationNavigation);
@@ -55,7 +61,7 @@ const [usageSelected, setUsageSelected] = useState(false);
             
             tooltip="chat support"
             icon="fa fa-comment" />
-            
+
         <Button 
             onClick={() => setPage(2)}
             
@@ -72,11 +78,6 @@ const [usageSelected, setUsageSelected] = useState(false);
             tooltip="Report Bug"
             icon="fa fa-bug" />
         
-        <Button 
-            onClick={() => setPage(2)}
-            
-            tooltip="Welcome"
-            icon="fa fa-sticky-note" />
         
         <Button
             
@@ -98,13 +99,15 @@ const [usageSelected, setUsageSelected] = useState(false);
      case 5: return <Chat/>
      default: return
    }
-  
-
  }
 
- return (<div className="h-100 w-100 border rounded bg-blue txt-wh text-white">
+ return (<div className="border rounded bg-blue text-white">
+   {//renderHeader()
+   }
    {renderLinks()}
+   
    {renderComponent()}
+   
  </div>);
 }
 

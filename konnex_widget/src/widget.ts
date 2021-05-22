@@ -1,17 +1,19 @@
 const defaultStyles: any = {
     'border': 'none',
+    'border-radius' : '10px',
     'z-index': 24356788,
     'height': '500px',
     'width': '350px',
     'display': 'block !important',
     'visibility': 'visible',
+    'overflow':'scroll',
     'background': 'none transparent',
     'opacity': 1,
     'pointer-events': 'auto',
     'touch-action': 'auto',
     'position': 'fixed',
     'right': '20px',
-    'bottom': '5px',
+    'bottom': '20px',
    }
    
    interface IConfig {

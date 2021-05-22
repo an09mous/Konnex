@@ -19,7 +19,9 @@ const NewTask: React.FC<Props> = ({ setPage }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="p-3">
+    <div>
+      <br /><br />
+    <form onSubmit={handleSubmit} className="pd-50">
       <div className="form-group">
         <label htmlFor="title">Title</label>
         <input type="text" name="title" className="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter title"/>
@@ -28,8 +30,11 @@ const NewTask: React.FC<Props> = ({ setPage }) => {
         <label htmlFor="description">Description</label>
         <textarea name="desc" className="form-control" id="description" rows={3}></textarea>
       </div>
+      
       <center><button type="submit" className="btn btn-primary">Submit</button></center>
     </form>
+    <br /><br /><br />
+    </div>
   )
 }
 
