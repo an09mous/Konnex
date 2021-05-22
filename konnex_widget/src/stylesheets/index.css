@@ -24,3 +24,21 @@ body {
 .mg-top-50{
   margin-top: 50px;
 }
+.hscroll{
+  height: 500px;
+  overflow: scroll;
+}
+.hscrollchat{
+  height: 400px;
+  overflow-y: auto;
+}
+.txt-60{
+  font-size: 60px;
+}
+
+.bg-transparent{
+  background-color: transparent;
+}
+.pd-50{
+  padding : 50px;
+}

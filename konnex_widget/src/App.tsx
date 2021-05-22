@@ -19,7 +19,10 @@ const App: React.FC = (props) => {
 const config: IConfig = JSON.parse(useContext(Context));
 const [page, setPage] = useState<Number>(1);
 const renderHeader = () => {
-   return (<h3 className="bg-dark p-3 m-0 text-white">Todo-List</h3>);
+   return (
+   <div className="p-3 m-0 text-white pull-right ">
+     <button className="bg-transparent text-white"><i className="fa fa-close"></i></button>
+    </div>);
  }
 
  const renderLinks = () => {
@@ -46,7 +49,7 @@ const renderHeader = () => {
             
             tooltip="chat support"
             icon="fa fa-comment" />
-            
+
         <Button 
             onClick={() => setPage(2)}
             
@@ -63,11 +66,6 @@ const renderHeader = () => {
             tooltip="Report Bug"
             icon="fa fa-bug" />
         
-        <Button 
-            onClick={() => setPage(2)}
-            
-            tooltip="Welcome"
-            icon="fa fa-sticky-note" />
         
         <Button
             
@@ -89,13 +87,15 @@ const renderHeader = () => {
      case 5: return <Chat/>
      default: return
    }
-  
-
  }
 
- return (<div className="h-100 w-100 border rounded bg-blue txt-wh text-white">
+ return (<div className="border rounded bg-blue text-white">
+   {//renderHeader()
+   }
    {renderLinks()}
+   
    {renderComponent()}
+   
  </div>);
 }
 
