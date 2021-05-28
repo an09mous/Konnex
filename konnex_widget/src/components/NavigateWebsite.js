@@ -24,11 +24,11 @@ const NavigateWebsite = (Props) => {
       <br />
       <center>
         <h2>Navigation</h2>
-        <div className="ag-theme-alpine hscrollchat" >
+        <div className="ag-theme-alpine" style={{ width: '250px', height: '300px' }}>
            <AgGridReact
-               rowData={rowData}>
-               <AgGridColumn field="navigation" sortable={ true } filter={ true } resizable={true} width = {150}></AgGridColumn>
-               <AgGridColumn field="path" resizable={true} width = {150}></AgGridColumn>
+            rowData={rowData}>
+            <AgGridColumn field="navigation" sortable={ true } filter={ true } resizable={true} width = {150}></AgGridColumn>
+            <AgGridColumn field="path" resizable={true} width = {150}></AgGridColumn>
            </AgGridReact>
        </div>
       </center>

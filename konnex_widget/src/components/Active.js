@@ -1,7 +1,8 @@
 import React from 'react';
 
 const Active = () => {
-    return (<div>
+    return (
+    <div>
       <div className = "container-fluid h-500">
         <br /><br />
         <center>
@@ -12,7 +13,8 @@ const Active = () => {
           <i className = "fa fa-headphones txt-50"></i>
           </center>
       </div>
-      </div>);
+      </div>
+      );
   }
   
 export default Active;
