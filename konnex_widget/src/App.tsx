@@ -25,10 +25,9 @@ const [usageSelected, setUsageSelected] = useState(false);
 const key = 'konnex123';
 
 useEffect(() => {
-  axios.get(`http://127.0.0.1:5001/api?key=${key}}`)
+  axios.get(`http://127.0.0.1:5001/api?key=${key}`)
   .then((response) => {
     const data = JSON.parse(response.data);
-    
     setAppAnnouncementsSelected(data.announcements);
     setAppNavSelected(data.applicationNavigation);
     setAppImprovementSelected(data.suggestions);
@@ -44,51 +43,52 @@ useEffect(() => {
  const renderLinks = () => {
    return (
     <Container>
-       {!appNavSelected ? <Button 
+      {
+        appNavSelected ? <Button 
           onClick={() => setPage(4)}
           
           tooltip="Navigate this website"
           icon="fa fa-arrows" /> : ""
-       }
+      }
       
-      {!chatbotSelected ? <Button 
-            onClick={() => setPage(5)}
-            
-            tooltip="chat support"
-            icon="fa fa-comment" />: ""
+      {
+        chatbotSelected ? <Button 
+          onClick={() => setPage(5)}
+          
+          tooltip="chat support"
+          icon="fa fa-comment" />: ""
       }
 
       {
         !appAnnouncementsSelected ? <Button 
-            onClick={() => setPage(2)}
-            
-            tooltip="Announcements"
-            icon="fa fa-bullhorn" />: ""
+          onClick={() => setPage(2)}
+          
+          tooltip="Announcements"
+          icon="fa fa-bullhorn" />: ""
       }
 
-      {!appImprovementSelected ? <Button 
-            onClick={() => setPage(2)}
-            
-            tooltip="Suggest Improvements"
-            icon="fa fa-sticky-note" />: ""
-      }
       {
-        !bugsSelected ? <Button 
-            onClick={() => setPage(2)}
-            
-            tooltip="Report Bug"
-            icon="fa fa-bug" />: ""
+        appImprovementSelected ? <Button 
+          onClick={() => setPage(2)}
+          
+          tooltip="Suggest Improvements"
+          icon="fa fa-sticky-note" />: ""
       }
 
-        
-        
-        <Button
-            style = {{opacity: 1}}
-            tooltip="Helpdesk"
-            icon="fa fa-headphones"
-            rotate={true}
-            
-           />
+      {
+        bugsSelected ? <Button 
+          onClick={() => setPage(2)}
+          
+          tooltip="Report Bug"
+          icon="fa fa-bug" />: ""
+      }
+
+      <Button
+        style = {{opacity: 1}}
+        tooltip="Helpdesk"
+        icon="fa fa-headphones"
+        rotate={true}
+      />
     </Container>
 )
  }
