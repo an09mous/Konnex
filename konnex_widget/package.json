@@ -28,6 +28,8 @@
     "react-scripts": "^3.4.3",
     "react-search-field": "^1.2.1",
     "react-simple-chatbot": "^0.6.1",
+    "socket.io": "^4.1.2",
+    "socket.io-client": "^4.1.2",
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
@@ -50,5 +52,6 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "proxy": "http://localhost:5002"
 }
