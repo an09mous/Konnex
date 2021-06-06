@@ -1,66 +1,61 @@
-import React,{Component} from 'react';
+import React, { useEffect, useState } from "react";
+import {AgGridColumn, AgGridReact} from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import axios from 'axios';
 
-class Bug extends React.Component {
-    constructor(props){
-        super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-    /*state = {
-      announce: [{"name":"announcement 1 this is a sample annoncement along with the date below it. ","timestamp":Date()},
-      {"name":"announcement 2 this is a sample annoncement along with the date below it. ","timestamp":Date()},
-      {"name":"announcement 3 this is a sample annoncement along with the date below it. ","timestamp":Date()}
-                  
-      ],
-      title:'',
-      desc:'',
-      images:'',
-    }*/
-    componentDidMount() {
-        /*axios.get(`https://jsonplaceholder.typicode.com/users`)
-          .then(res => {
-            const announce = res.data;
-            this.setState({ announce });
-          })*/
-      }
-      handleChange = event => {
-        this.setState({ name: event.target.value });
-      }
+function Bug(){
+  const [rowEmail, setEmail] = useState("");
+  const [rowErrorType,setErrorType] = useState("");
+  const [rowText , setText] =useState("");
+
+  // useEffect(() => {
+  //   handleSubmit();
+  // }, []);
+  function handleSubmit(){
+    axios.put('http://localhost:5003/bugs',
+        {
+           email:rowEmail,
+           errorType:rowErrorType,
+           text=rowText
+        }
+    )
+    .catch((e) => {console.log("error", e)});
     
-      handleSubmit = event => {
-        event.preventDefault();
-
-        /*axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-          .then(res => {
-            console.log(res);
-            console.log(res.data);
-          })*/
-      }    
-render(){
+}
+function handleEmailChange(e){
+  setEmail(e.target.value);
+}
+function handleErrorTypeChange(e){
+  setErrorType(e.target.value);
+}
+function handleTextChange(e){
+  setText(e.target.value);
+}
   return (
-    <div>
-    
-    <form className="pd-50">
-      <div className="form-group">
-        <label htmlFor="title">Title</label>
-        <input type="text" name="title" className="form-control" id="title" aria-describedby="emailHelp"onChange={this.handleChange}  placeholder="Enter title"/>
-      </div>
-      <div className="form-group">
-        <label htmlFor="description">Description</label>
-        <textarea name="desc" className="form-control" id="description" onChange={this.handleChange} rows={3}></textarea>
-      </div>
+    <div className = "container-fluid h-500" >
+      <br />
+      <center>
+        <h2>Bug</h2>
+        <div className="ag-theme-alpine" style={{ width: '250px', height: '300px' }}>
+        <form>
+                <label style={{padding: 10}}>Email: 
+                    <input type="email"  name = "email" onChange = {handleEmailChange}/>
+                </label>
+                <label>ErrorType: 
+                    <input type="text" name = "errorType" onChange = {handleErrorTypeChange}/>
+                </label>
+                <label>Error: 
+                    <input type="text" name = "text" onChange = {handleTextChange}/>
+                </label>
+                <input type="submit" name="Submit" onClick = {handleSubmit}/>
+            </form>
+       </div>
+      </center>
       
-      <div className="form-group">
-        <label htmlFor="images">Attach images</label>
-        <input type="file" name="images" className="form-control" id="images" onChange={this.handleChange} multiple />
-      </div>
-      
-      <center><button type="submit" className="btn btn-primary">Submit</button></center>
-    </form>
     
     </div>
-  )
-
-}
-}
+  );
+  }
+  
 export default Bug;

@@ -76,7 +76,7 @@ useEffect(() => {
       }
 
       {
-        bugsSelected ? <Button 
+        !bugsSelected ? <Button 
           onClick={() => setPage(2)}
           
           tooltip="Report Bug"
