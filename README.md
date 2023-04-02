@@ -1,5 +1,5 @@
 # Konnex
-Simple chatbot plugin with UI that can be integrated to any web application.
+A virtual helpdesk plugin with UI that can be integrated to any web application.
 - The admin can send notifications to the web application user using chatbot.
 - Admin can track user behaviour
 - User can create support tickets using chatbot
